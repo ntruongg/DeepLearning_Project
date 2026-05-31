@@ -1,39 +1,39 @@
-0
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
+Biển cảnh báo đường người đi bộ cắt ngang
+Biển báo ngã ba bên trái
+Biển cấm đi ngược chiều
+Biển báo vòng qua phải tránh chướng ngại vật
+Biển báo ngã tư
+Biển báo giao nhau với đường không ưu tiên bên phải
+Biển báo chỗ ngoặt nguy hiểm vòng bên trái
+Biển cấm rẽ trái
+Biển bến xe buýt
+Biển báo có vòng xoay
+Biển cấm dừng và đỗ xe
+Biển chỉ dẫn chỗ quay xe bên trái
+Biển phân làn ô tô và xe máy
+Biển báo đi chậm
+Biển báo đường bị hẹp bên phải
+Biển cấm xe khách và xe tải
+Biển cấm quẹo phải và quay đầu phải
+Biển cấm ô tô
+Biển báo đường bị hẹp bên trái
+Biển báo có gờ giảm tốc
+Biển cấm mô tô và xe lam
+Biển báo trạm kiểm tra
+Biển báo chú ý chướng ngại vật phía trước
+Biển báo đường nhiều trẻ em
+Biển cấm mô tô
+Biển báo đoạn đường xử phạt bằng camera
+Biển cấm quẹo phải
+Biển báo nhiều chỗ ngoặt nguy hiểm
+Biển cấm xe container
+Biển cấm rẽ trái và phải
+Biển cấm đi thẳng và quẹo phải
+Biển giao nhau bên phải
+Biển chỉ dẫn quẹo bên trái
+Biển chỉ dẫn đi thẳng
+Biển cấm đỗ xe
+Biển cấm ô tô quay đầu
+Biển báo giao nhau với đường sắt có rào chắn
+Biển cấm quẹo trái và quay đầu
+Biển báo chỗ ngoặt nguy hiểm vòng sang phải

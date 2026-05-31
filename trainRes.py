@@ -6,7 +6,7 @@ from tensorflow.keras.layers import Input, Dense, Dropout, BatchNormalization, G
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.callbacks import ReduceLROnPlateau, EarlyStopping
+from tensorflow.keras.callbacks import CSVLogger, ReduceLROnPlateau, EarlyStopping
 from tensorflow.keras.applications.resnet import ResNet50, preprocess_input
 import cv2
 from sklearn.model_selection import train_test_split
@@ -23,7 +23,8 @@ epochs_val = 20                        # Số lượng epoch tối đa (Early St
 imageDimesions = (64, 64, 3)           # Độ phân giải 64x64 giúp ResNet trích xuất đặc trưng sắc nét hơn
 testRatio = 0.2                        # Tỷ lệ chia tập kiểm thử độc lập (Test)
 validationRatio = 0.2                  # Tỷ lệ chia tập xác thực trong lúc train (Validation)
-
+csv_logger = CSVLogger('res_history.csv', append=False)
+    
 # =====================================================================
 # BƯỚC 1: QUÉT THƯ MỤC VÀ TẠO ÁNH XẠ NHÃN LIÊN TỤC (SỬA LỖI LỆCH NHÃN)
 # =====================================================================
@@ -185,7 +186,7 @@ if __name__ == "__main__":
         steps_per_epoch=max(1, len(X_train) // batch_size_val),
         epochs=epochs_val,
         validation_data=(X_validation, y_validation),
-        callbacks=[lr_reducer, early_stopper],
+        callbacks=[lr_reducer, early_stopper, csv_logger],
         shuffle=True
     )
     
@@ -216,6 +217,6 @@ if __name__ == "__main__":
     print('Test Accuracy:', score[1])
     
     # Lưu mô hình hoàn thiện ra file model.h5
-    model_name = "resnet_model.h5"
+    model_name = "aresnet_model.h5"
     model.save(model_name)
     print(f"[SUCCESS] Lưu mô hình ResNet thành công vào file '{model_name}'!")

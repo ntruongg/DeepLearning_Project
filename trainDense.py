@@ -6,16 +6,13 @@ from tensorflow.keras.layers import Input, Dense, Dropout, BatchNormalization, G
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.callbacks import ReduceLROnPlateau, EarlyStopping
+from tensorflow.keras.callbacks import ReduceLROnPlateau, EarlyStopping, CSVLogger
 from tensorflow.keras.applications.densenet import DenseNet121, preprocess_input
 import cv2
 from sklearn.model_selection import train_test_split
 import os
 import pandas as pd
 
-# =====================================================================
-# KHỞI TẠO CẤU HÌNH ĐƯỜNG DẪN & SIÊU THAM SỐ (ĐỒNG BỘ VỚI RESNET)
-# =====================================================================
 path = "data/train"                    # Đường dẫn chứa thư mục ảnh gốc (data/train/<class_id>)
 class_names_file = "class_names.txt"        # File chứa ánh xạ nhãn để đồng bộ với phần mềm GUI
 batch_size_val = 64                    # Kích thước batch tối ưu 
@@ -23,10 +20,8 @@ epochs_val = 20                        # Số lượng epoch tối đa (Early St
 imageDimesions = (64, 64, 3)           # Độ phân giải 64x64 giữ chi tiết tốt cho biển báo
 testRatio = 0.2                        # Tỷ lệ chia tập kiểm thử độc lập (Test)
 validationRatio = 0.2                  # Tỷ lệ chia tập xác thực trong lúc train (Validation)
+csv_logger = CSVLogger('dense_history.csv', append=False)
 
-# =====================================================================
-# BƯỚC 1: SẮP XẾP THEO SỐ TỰ NHIÊN (ĐỒNG BỘ HOÀN TOÀN TRÁNH BUG LỆCH NHÃN)
-# =====================================================================
 if not os.path.exists(path):
     raise FileNotFoundError(f"Thư mục dữ liệu '{path}' không tồn tại! Vui lòng kiểm tra lại.")
 
@@ -187,8 +182,8 @@ if __name__ == "__main__":
         steps_per_epoch=max(1, len(X_train) // batch_size_val),
         epochs=epochs_val,
         validation_data=(X_validation, y_validation),
-        callbacks=[lr_reducer, early_stopper],
-        shuffle=True
+        callbacks=[lr_reducer, early_stopper, csv_logger],
+        shuffle=True,
     )
     
     # Vẽ đồ thị kết quả biểu diễn Loss và Accuracy để làm tài liệu so sánh trong đề tài
@@ -218,7 +213,7 @@ if __name__ == "__main__":
     print('Test Accuracy:', score[1])
     
     # Lưu mô hình hoàn thiện ra file chuyên biệt
-    model_name = "densenet_model.h5"
+    model_name = "adensenet_model.h5"
     model.save(model_name)
     print(f"[SUCCESS] Lưu mô hình DenseNet thành công vào file '{model_name}'!")
 
